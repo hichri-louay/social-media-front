@@ -1,28 +1,29 @@
 <div class="signup-container">
-    <form>
+    <form [formGroup]="registerForm">
       <h2>Sign Up</h2>
       
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required>
+        <input type="text" id="firstName" name="firstName" formControlName="firstName">
       </div>
       
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required>
+        <input type="text" id="lastName" name="lastName" formControlName="lastName">
       </div>
       
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" formControlName="email">
       </div>
       
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" formControlName="password">
       </div>
       
-      <button type="submit">Sign Up</button>
+      <button type="button" (click)="onSubmit()">Sign Up</button>
     </form>
+    <p (click)="navigateToLogin()">Have already an account ?</p>
   </div>
   

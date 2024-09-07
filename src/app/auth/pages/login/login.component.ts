@@ -50,4 +50,8 @@ export class LoginComponent implements OnInit {
       this._toastr.warning('Please fill in all required fields.', 'Warning');
     }
   }
+
+  navigateToRegister(): void {
+    this._router.navigateByUrl('/auth/register');
+  }
 }
