@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _formBuilder: FormBuilder,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void { 
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this._authService.signin(this.loginForm.value).subscribe(
         (res) => {
+          this._authService.saveToken(res.data.token);
           this._toastr.success('Login successful!', 'Success');
+          this._router.navigateByUrl('/');
         },
         (err) => {
           console.log({err})
