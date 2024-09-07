@@ -17,4 +17,16 @@ export class PostsService {
   getPosts(): Observable<any> {
     return this._http.get(`${this._apiUrl}/api/post`);
   }
+
+  addComment(postId: string, content: string): Observable<any> {
+    return this._http.post(`${this._apiUrl}/api/post/${postId}/comment`, { content });
+  }
+
+  likePost(postId: string): Observable<any> { 
+    return this._http.post(`${this._apiUrl}/api/post/${postId}/like`, {});
+  }
+
+  createPost(content: string): Observable<any> {
+    return this._http.post(`${this._apiUrl}/api/post/create`, { content });
+  }
 }
